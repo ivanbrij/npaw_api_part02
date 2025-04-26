@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://vjs.zencdn.net/8.23.3/video-js.min.css" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/8.23.3/video.min.js"></script>
+    <script src="https://artifact.plugin.npaw.com/artifactory/plugins/js/7.3.9/NpawPlugin.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #eee;
+            padding: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #222;
+        }
+        th, td {
+            border: 1px solid #555;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin: 20px;">
+        <label for="bitrate-unit">Select bitrate unit: </label>
+        <select id="bitrate-unit" onchange="updateBitrateUnit()">
+            <option value="bps">bps</option>
+            <option value="mbps" selected>Mbps</option>
+          </select>
+    </div>
+    <video
+        id="my-player"
+        class="video-js"
+        controls
+        preload="auto"
+        data-setup='{}'>
+        <source src="https://origin.demo.dev.codavel.com/hls/bigbuck/main.m3u8" type="application/x-mpegURL" />
+        Your browser does not support the video tag.
+    </video>
+    <h2 style="text-align:center; margin-top: 40px;">📊 Live NPAW User Data</h2>
+    <table id="live-data-table">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>IP Address</th>
+                <th>Views</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td colspan="3">Loading...</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        window.bitrateUnit = 'mbps';
+        function updateBitrateUnit() {
+          const unit = document.getElementById('bitrate-unit').value;
+          window.bitrateUnit = unit;
+        }
+    </script>
+    <script src="npaw.js"></script>
+    <script src="api_get.js"></script>
+</body>
+</html>
